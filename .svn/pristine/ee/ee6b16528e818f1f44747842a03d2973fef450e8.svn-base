@@ -1,0 +1,47 @@
+<ion-view title="贷款计算机" id="page2" class=" " >
+    <ion-content padding="true" class="has-header">
+        <div id="cameraTabDefaultPage-button-bar1" class=" button-bar ">
+            <button id="cameraTabDefaultPage-button6" class="button button-stable button-small button-block " ng-class="{'active': loan.debxIsActive}" ng-click="loan.chooseDebx(1,$event)">等额本息</button>
+            <button id="cameraTabDefaultPage-button7" class=" button button-stable button-small button-block " ng-class="{'active': loan.debjIsActive}" ng-click="loan.chooseDebj(2,$event)">等额本金</button>
+        </div>
+
+         <p>还款总额：{{loan.total | number : 2}}</p>
+         <p>总利息：  {{loan.rateTotal | number : 2}}</p>
+         <p>贷款期限：  {{loan.period}}月（{{loan.selectedYear}}年零{{loan.selectedMonth}}个月）</p>
+        <form id="cameraTabDefaultPage-form1" class="list ">
+
+            <label class="item item-input " id="cameraTabDefaultPage-input1">
+                <span class="input-label">贷款本金</span>
+                <input type="number" placeholder="请输入贷款金额" ng-model='loan.corpus' ng-blur="loan.caculate()" style="text-align:right;">
+            </label>
+
+          <label class="item item-select " id="cameraTabDefaultPage-selectYear" name="periodYear">
+            <span class="input-label">期限(年)</span>
+            <select ng-model='loan.selectedYear' ng-options="year for year in loan.getYears()" ng-change="loan.selectYear()" >
+              <!--<option>{{month}}</option>-->
+            </select>
+          </label>
+            <label class="item item-select " id="cameraTabDefaultPage-select2" name="periodMonth">
+                <span class="input-label">期限(月)</span>
+              <select ng-model='loan.selectedMonth' ng-options=" month for month in loan.getMonths()[loan.periodType]" ng-change="loan.selectMonth()">
+              </select>
+            </label>
+          <label class="item item-select " id="cameraTabDefaultPage-select1" name="loanInterest" >
+            <span class="input-label">利率(%)</span>
+            <select ng-model='loan.mrate' ng-model='loan.mrate'>
+              <option>4.75</option>
+            </select>
+          </label>
+        </form>
+        <button id="cameraTabDefaultPage-button9" class=" button button-positive  button-block " ng-click="loan.caculate()">
+            <if ng-if="loan.total > 0">
+             重新计算
+            </if>
+          <if ng-if="loan.total == 0">
+            计算
+          </if>
+        </button>
+        <a ui-sref="tabsController.page5" id="cameraTabDefaultPage-button3" class=" button button-positive  button-block " ng-show="loan.total > 0">查看详情</a>
+
+    </ion-content>
+</ion-view>

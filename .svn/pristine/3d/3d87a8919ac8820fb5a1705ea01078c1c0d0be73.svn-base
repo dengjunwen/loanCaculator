@@ -1,0 +1,16 @@
+dependencies: \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/HelloCordova/Classes/AppDelegate.m \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/HelloCordova/Classes/AppDelegate.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVViewController.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVAvailability.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVAvailabilityDeprecated.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVInvokedUrlCommand.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVCommandDelegate.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVCommandQueue.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVWhitelist.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVScreenOrientationDelegate.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVPlugin.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVPluginResult.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/NSMutableArray+QueueAdditions.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/HelloCordova/Classes/MainViewController.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/build/emulator/include/Cordova/CDVCommandDelegateImpl.h

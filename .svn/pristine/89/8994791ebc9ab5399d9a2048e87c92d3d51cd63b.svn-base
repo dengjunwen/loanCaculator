@@ -1,0 +1,8 @@
+dependencies: \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVPluginResult.m \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVPluginResult.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVAvailability.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVAvailabilityDeprecated.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVJSON_private.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVDebug.h \
+  /Users/it-1/Downloads/JWCaculateIonic/platforms/ios/CordovaLib/Classes/NSData+Base64.h

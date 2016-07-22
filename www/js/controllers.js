@@ -1,0 +1,283 @@
+angular.module('app.controllers', [])
+
+.controller('cameraTabDefaultPageCtrl', function($scope) {
+
+})
+
+.controller('page5Ctrl', function($scope) {
+
+})
+
+.controller('cartTabDefaultPageCtrl', function($scope) {
+
+})
+
+
+  .controller('LoanCalculatorController',
+  function($scope) {
+    $scope.loan={
+      //corpus :    0,
+      period:      6,
+      total:       0,
+      rateTotal:   0,
+      detailPerMs: [],
+      loadType:    1, //1为等额本息  2为等额本金
+      years:       [],
+      month12:    [],
+      month36:    [],
+      selectedYear:  0,
+      selectedMonth: 6,
+      debxIsActive:true,//等额本金被选中
+      debjIsActive:false,
+      periodType:   'onlyMonth',//onlyMonth为直选中了月， yearAndMonth为年和月都选中了
+
+      rateType:   '1',//利率的类型 日利率还是月利率 年利率  最后用日利率算出年利率/12得出月利率
+      rate:       Number(localStorage.rate),
+      mrate:      0,
+
+      dayRate:     0,
+      monRate:   0,
+      yearRate:    0,
+
+      initRateType: function(){
+        console.log('ksjkjdsfks');
+        if(localStorage.rateType){
+          this.rateType = localStorage.rateType;
+        }else{
+          this.rateType = '1';
+        }
+      },
+      //计算年利率 日利率 月利率
+      caculateRate: function(){
+        switch (this.rateType){
+          case '1':
+            this.dayRate = this.rate;
+            this.yearRate = this.dayRate * 300;
+            this.monRate = this.yearRate/12; //获得了月利率
+            break;
+          case '2':
+            this.monRate = this.rate;
+            this.yearRate = this.monRate * 12;
+            this.dayRate = this.yearRate / 300;
+            break;
+          case '3':
+            this.yearRate = this.rate;
+            this.monRate = this.yearRate / 12;
+            this.dayRate = this.yearRate / 300;
+            break;
+        }
+        this.mrate = this.monRate;
+      },
+      getYears: function(){
+        if(this.years.length > 10){
+          return this.years;
+        }
+        for(var i = 0; i < 50; i++){
+          this.years[i] = i;
+        }
+        return this.years;
+      },
+      getMonths: function(){
+
+        var months = [];
+        months.onlyMonth = this.getMonth36();
+        months.yearAndMonth = this.getMonth12();
+        return months;
+      },
+      getMonth12: function(){
+        if(this.month12.length < 10){
+          for(var i = 0; i <= 12; i++){
+            this.month12[i] = i;
+          }
+        }
+        return this.month12;
+      },
+      getMonth36: function () {
+        if(this.month36.length < 30){
+          for(var i = 0; i < 36; i++){
+            this.month36[i] = i + 1;
+          }
+        }
+        return this.month36
+      },
+
+      //选了年份
+      selectYear: function(){
+        this.period = this.selectedYear * 12 + this.selectedMonth;
+        if(this.selectedYear == 0){
+         this.periodType = "onlyMonth";
+        }else {
+          this.periodType = "yearAndMonth";
+        }
+          this.caculate();
+      },
+      selectMonth: function(){
+        this.period = this.selectedYear * 12 + this.selectedMonth;
+        this.caculate();
+      },
+    chooseDebx: function(loadType,evnet){
+        this.debxIsActive = true;
+        this.debjIsActive = false;
+        this.loadType = 1;
+        this.caculate();
+
+        //$(event.target).siblings('button').addClass('button-stable').removeClass('button-positive');
+        //
+        //$(event.target).addClass('button-positive').removeClass('button-stable');
+      },
+      chooseDebj: function(loadType,evnet){
+        this.debxIsActive = false;
+        this.debjIsActive = true;
+        this.loadType = 2;
+        this.caculate();
+
+        //$(event.target).siblings('button').addClass('button-stable').removeClass('button-positive');
+        //
+        //$(event.target).addClass('button-positive').removeClass('button-stable');
+      },
+      caculate: function(){
+        if(!this.corpus || this.corpus == 0 || !this.rate){
+          return ;
+        }
+        this.caculateRate();
+        localStorage.rate = this.rate;
+        localStorage.rateType = this.rateType;
+        if(this.constructor == 0){
+          return;
+        }
+        if(this.loadType == 1){
+          this.getDetailPerMsByBenxi();
+          return;
+        }
+        if(this.loadType == 2){
+          this.getDetailPerMsByBenjin();
+          return;
+        }
+
+      },
+      //等额本息每月还款额
+      getTotalPerM: function(){
+        //var _loan;
+        //_loan = $scope.loan;
+
+        var x = this.mrate/12/100;
+        var y = this.period;
+        return this.corpus * (x*Math.pow((1+x),y))/(Math.pow((1+x),y)-1);
+      },
+      //还款总额
+      getTotal: function(){
+        return this.getTotalPerM() * this.period;
+      },
+      //总利息
+      getRateTotal: function(){
+        return this.getTotal() - $scope.loan.corpus;
+      },
+      //等额本息获取每月明细
+      getDetailPerMsByBenxi: function(){
+        this.detailPerMs = [];
+        for (var i = 0; i < $scope.loan.period; i++) {
+          this.detailPerMs[i] = makeDetailPerM(i);
+        };
+        this.total = this.getTotalPerM() * this.period;
+        this.rateTotal = this.getTotal() - $scope.loan.corpus;
+      },
+      //等额本金获取每月明细
+      getDetailPerMsByBenjin: function(){
+        this.detailPerMs = [];
+        for (var i = 0; i < $scope.loan.period; i++) {
+          this.detailPerMs[i] = makeDetailPerMByBenjin(i);
+        };
+        this.total = this.detailPerMs[$scope.loan.period -1].leiji;
+        this.rateTotal = this.detailPerMs[$scope.loan.period -1].lixiTotal;
+      }
+    };
+    //等额本息每月明细对象工厂
+    var makeDetailPerM = function(index){
+      var detailPerM = {};
+      //本月还款
+      detailPerM.corpusThisM = $scope.loan.getTotalPerM();
+      //当月利息
+      detailPerM.lixi;
+      if(index === 0){
+        //上期剩余本金*月利率
+        detailPerM.lixi = $scope.loan.corpus * $scope.loan.mrate / 100 / 12;
+      }
+      else{
+        detailPerM.lixi = ($scope.loan.corpus - $scope.loan.detailPerMs[index-1].benjinTotal) * $scope.loan.mrate / 100 / 12;
+      }
+      //本金
+      detailPerM.benjin = detailPerM.corpusThisM - detailPerM.lixi;
+
+      //已还本金总额
+      if(index  === 0){
+        detailPerM.benjinTotal = detailPerM.benjin;
+      }
+      else{
+        detailPerM.benjinTotal = $scope.loan.detailPerMs[index-1].benjinTotal + detailPerM.benjin;
+      }
+
+      //已还利息总额
+      if(index === 0){
+        detailPerM.lixiTotal = detailPerM.lixi;
+      }
+      else{
+        detailPerM.lixiTotal = $scope.loan.detailPerMs[index-1].lixiTotal + detailPerM.lixi;
+      }
+
+      //累计还款
+      detailPerM.leiji = detailPerM.corpusThisM * (index + 1);
+      //计算年
+      detailPerM.year = Math.ceil((index+1) / 12);
+      //计算月
+      var month = (index + 1) % 12;
+      detailPerM.month = month == 0 ? 12 : month;
+      return detailPerM;
+    };
+    //等额本金 每月明细对象工厂
+    var makeDetailPerMByBenjin = function(index){
+      var detailPerM = {};
+      //本月本金
+      detailPerM.benjin = $scope.loan.corpus / ($scope.loan.period / 12) / 12;
+      //已还本金总额
+      if(index === 0){
+        detailPerM.benjinTotal = detailPerM.benjin;
+      }
+      else{
+        detailPerM.benjinTotal = $scope.loan.corpus / ($scope.loan.period /12) / 12 * (index + 1);
+      }
+      //本月利息
+      if(index === 0){
+        detailPerM.lixi = $scope.loan.corpus * $scope.loan.mrate / 100 / 12;
+      }
+      else{
+        detailPerM.lixi = ($scope.loan.corpus - $scope.loan.detailPerMs[index-1].benjinTotal) * $scope.loan.mrate / 100 / 12;
+      }
+      //本月还款
+      detailPerM.corpusThisM = detailPerM.benjin + detailPerM.lixi
+      //已还利息总额
+      if(index === 0){
+        detailPerM.lixiTotal = detailPerM.lixi;
+      }
+      else{
+        detailPerM.lixiTotal = $scope.loan.detailPerMs[index-1].lixiTotal + detailPerM.lixi;
+      }
+      //累计还款
+      if(index === 0){
+        detailPerM.leiji = detailPerM.benjin + detailPerM.lixi;
+      }
+      else{
+        detailPerM.leiji = $scope.loan.detailPerMs[index-1].leiji + detailPerM.corpusThisM;
+      }
+      //计算年
+      detailPerM.year = Math.ceil((index+1) / 12);
+
+      //计算月
+        var month = (index + 1) % 12;
+        detailPerM.month = month == 0 ? 12 : month;
+      return detailPerM;
+    };
+    $scope.loan.initRateType();
+  });
+
+
+

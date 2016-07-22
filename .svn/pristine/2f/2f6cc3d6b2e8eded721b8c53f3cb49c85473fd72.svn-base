@@ -1,0 +1,9 @@
+dependencies: \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVPlugin.m \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVPlugin.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVPluginResult.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVAvailability.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVAvailabilityDeprecated.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/NSMutableArray+QueueAdditions.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVCommandDelegate.h \
+  /Users/it-1/Documents/c_workspace2016/c_workspace_git/JWCaculateIonic/platforms/ios/CordovaLib/Classes/CDVInvokedUrlCommand.h

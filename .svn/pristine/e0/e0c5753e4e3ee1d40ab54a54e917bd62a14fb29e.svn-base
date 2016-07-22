@@ -1,0 +1,36 @@
+<ion-view title="贷款计算机" id="page2" class=" " >
+    <ion-content padding="true" class="has-header">
+        <div id="cameraTabDefaultPage-button-bar1" class=" button-bar ">
+            <button id="cameraTabDefaultPage-button6" class=" button button-positive button-small button-block " ng-click="loan.setLoadType(1)">等额本息</button>
+            <button id="cameraTabDefaultPage-button7" class=" button button-positive button-small button-block " ng-click="loan.setLoadType(2)">等额本金</button>
+        </div>
+         <p>还款总额：{{loan.total | number : 2}}</p>
+         <p>总利息：  {{loan.rateTotal | number : 2}}</p>
+        <form id="cameraTabDefaultPage-form1" class="list ">
+
+            <label class="item item-input " id="cameraTabDefaultPage-input1">
+                <span class="input-label">贷款本金</span>
+                <input type="number" placeholder="请输入贷款金额" ng-model='loan.corpus' >
+            </label>
+            <label class="item item-select " id="cameraTabDefaultPage-select1" name="loanInterest" >
+                <span class="input-label">利率(%)</span>
+                <select ng-model='loan.mrate' ng-model='loan.mrate'>
+                    <option>4.75</option>
+                </select>
+            </label>
+            <label class="item item-select " id="cameraTabDefaultPage-select2" name="term">
+                <span class="input-label">期限(月)</span>
+                <select ng-model='loan.period'>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+
+                </select>
+            </label>
+        </form>
+        <button id="cameraTabDefaultPage-button9" class=" button button-positive  button-block " ng-click="loan.caculate()">计算</button>
+        <a ui-sref="tabsController.page5" id="cameraTabDefaultPage-button3" class=" button button-positive  button-block ">查看详情</a>
+    </ion-content>
+</ion-view>
