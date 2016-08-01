@@ -35,12 +35,11 @@ angular.module('app.controllers', [])
       rate:       Number(localStorage.rate),
       mrate:      0,
 
-      dayRate:     0,
-      monRate:   0,
-      yearRate:    0,
+      dayRate:     0,//日利率
+      monRate:   0,//月利率
+      yearRate:    0,//year利率
 
       initRateType: function(){
-        console.log('ksjkjdsfks');
         if(localStorage.rateType){
           this.rateType = localStorage.rateType;
         }else{
@@ -51,16 +50,19 @@ angular.module('app.controllers', [])
       caculateRate: function(){
         switch (this.rateType){
           case '1':
+            //已知日利率
             this.dayRate = this.rate;
-            this.yearRate = this.dayRate * 300;
-            this.monRate = this.yearRate/12; //获得了月利率
+            this.monRate = this.dayRate/30; //获得了月利率
+            this.yearRate = this.monRate * 12;
             break;
           case '2':
+            //已知月利率
             this.monRate = this.rate;
             this.yearRate = this.monRate * 12;
             this.dayRate = this.yearRate / 300;
             break;
           case '3':
+            //已知年利率
             this.yearRate = this.rate;
             this.monRate = this.yearRate / 12;
             this.dayRate = this.yearRate / 300;
