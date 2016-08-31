@@ -1,4 +1,4 @@
-这是一个ionic写的贷款计算器，适合消费金融的短期贷款。 
+﻿这是一个ionic写的贷款计算器，适合消费金融的短期贷款。 
 适用于android  iOS   h5
  - 支持自定义年利率 月利率 日利率，并且根据日利率计算年利率，以此类推
  - 支持等额本息、等额本金热切换
@@ -18,12 +18,12 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;iOS:
 `ionic platform add ios  
-ionic build ios  
-ionic emulate ios`  
+    ionic build ios  
+    ionic emulate ios`  
 
 &nbsp;&nbsp;&nbsp;&nbsp;android:
 `ionic platform add android  
-ionic build android  
-ionic emulate android`
+    ionic build android  
+    ionic emulate android`
 
   [1]: https://raw.githubusercontent.com/dengjunwen/loanCaculator/master/loadCaculator.gif
