@@ -14,14 +14,16 @@
  - 使用命令行`git clone https://github.com/dengjunwen/loanCaculator.git`
    或者下载下来。
  - 进入项目的根目录，执行`ionic serve`，输入localhost，即可在浏览器中看到运行的网页。
- - 按照ionic的教程，分别添加android和ios平台。(所有都是在项目的根目录进行的)
+ - 按照ionic的教程，分别添加android和ios平台。(所有都是在项目的根目录进行的)  
+
 &nbsp;&nbsp;&nbsp;&nbsp;iOS:
-`ionic platform add ios
-ionic build ios
-ionic emulate ios`
+`ionic platform add ios  
+ionic build ios  
+ionic emulate ios`  
+
 &nbsp;&nbsp;&nbsp;&nbsp;android:
-`ionic platform add android
-ionic build android
+`ionic platform add android  
+ionic build android  
 ionic emulate android`
 
   [1]: https://raw.githubusercontent.com/dengjunwen/loanCaculator/master/loadCaculator.gif
