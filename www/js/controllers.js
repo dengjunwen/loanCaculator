@@ -52,14 +52,17 @@ angular.module('app.controllers', [])
           case '1':
             //已知日利率
             this.dayRate = this.rate;
-            this.monRate = this.dayRate/30; //获得了月利率
+            this.monRate = this.dayRate * 30; //获得了月利率
             this.yearRate = this.monRate * 12;
+            console.log('----'+this.rate+"----"+this.dayRate+"----"+this.monRate+"--"+this.yearRate);
             break;
           case '2':
             //已知月利率
             this.monRate = this.rate;
             this.yearRate = this.monRate * 12;
             this.dayRate = this.yearRate / 300;
+            alert('2222');
+
             break;
           case '3':
             //已知年利率
@@ -280,6 +283,3 @@ angular.module('app.controllers', [])
     };
     $scope.loan.initRateType();
   });
-
-
-
