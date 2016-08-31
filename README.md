@@ -17,13 +17,17 @@
  - 按照ionic的教程，分别添加android和ios平台。(所有都是在项目的根目录进行的)  
 
 &nbsp;&nbsp;&nbsp;&nbsp;iOS:
-`ionic platform add ios  
+<pre>
+    ionic platform add ios  
     ionic build ios  
-    ionic emulate ios`  
+    ionic emulate ios
+</pre>
 
 &nbsp;&nbsp;&nbsp;&nbsp;android:
-`ionic platform add android  
+<pre>
+    ionic platform add android  
     ionic build android  
-    ionic emulate android`
+    ionic emulate android
+</pre>
 
   [1]: https://raw.githubusercontent.com/dengjunwen/loanCaculator/master/loadCaculator.gif
