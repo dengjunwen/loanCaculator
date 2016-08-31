@@ -8,5 +8,20 @@
 如图所示
 ![此处输入图片的描述][1]
 
+使用方式：
+
+ - 需要提前安装ionic的环境。去搜索ionic的环境安装教程吧。
+ - 使用命令行`git clone https://github.com/dengjunwen/loanCaculator.git`
+   或者下载下来。
+ - 进入项目的根目录，执行`ionic serve`，输入localhost，即可在浏览器中看到运行的网页。
+ - 按照ionic的教程，分别添加android和ios平台。(所有都是在项目的根目录进行的)
+&nbsp;&nbsp;&nbsp;&nbsp;iOS:
+`ionic platform add ios
+ionic build ios
+ionic emulate ios`
+&nbsp;&nbsp;&nbsp;&nbsp;android:
+`ionic platform add android
+ionic build android
+ionic emulate android`
 
   [1]: https://raw.githubusercontent.com/dengjunwen/loanCaculator/master/loadCaculator.gif
