@@ -32,4 +32,3 @@
 
   [1]: https://raw.githubusercontent.com/dengjunwen/loanCaculator/master/loadCaculator.gif
 
-////////////////
